@@ -15,3 +15,11 @@ pip install celery pymongo flower ipython flask flask-mail
 #CELERY BROKER
 apt-get install -y rabbitmq-server
 apt-get install -y librabbitmq-dev
+
+
+#adding user
+groupadd loghub
+useradd -g loghub \
+	-G adm,cdrom,sudo,dip,plugdev \
+	-d /home/loghub \
+	-s /bin/bash loghub

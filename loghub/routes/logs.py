@@ -19,7 +19,7 @@ def jsonize_request():
 
 @app.route('/API/v1/applications/<APP_TOKEN>/', methods=['POST'])
 def logging(APP_TOKEN):
-    credential = request.headers.get('Authorization', None)
+    credential = request.headers.get('X-Authorization', None)
     
     if not credential:
         return jsonify(log_responses[55])
@@ -47,7 +47,7 @@ def logging(APP_TOKEN):
 
 @app.route('/API/v1/logs', methods=['GET'])
 def query_log(limit=None,level=None,keyword=None,newerThan=None,olderThan=None):
-    credential = request.headers.get('Authorization',None)
+    credential = request.headers.get('X-Authorization',None)
     
     if not credential:
         return jsonify(log_responses[55])

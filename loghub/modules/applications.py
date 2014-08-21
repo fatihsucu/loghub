@@ -15,8 +15,6 @@ def register_app(name,credential_id):
 
     if not name and not credential_id:
         return 41
-    if not name:
-        return 42
     if not credential_id:
         return 43
 

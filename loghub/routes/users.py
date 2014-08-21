@@ -111,7 +111,7 @@ def reset_credential_id():
 @app.route('/API/v1/user/password', methods=['PUT'])
 @check_password
 def change_user_password():
-	credential_line = request.headers.get("Authorization", None)
+	credential_line = request.headers.get("X-Authorization", None)
 	
 	if not credential_line:
 		return jsonify(users_responses[35])
@@ -137,7 +137,7 @@ def change_user_password():
 
 @app.route('/API/v1/user/email', methods=['PUT'])
 def change_user_email():
-	credential_line = request.headers.get("Authorization", None)
+	credential_line = request.headers.get("X-Authorization", None)
 	if not credential_line:
 		return jsonify(users_responses[35])
 	credential_id = credential_line.split()[1]

@@ -20,7 +20,7 @@ def jsonize_request():
 
 @app.route('/API/v1/alarms', methods = ['POST'])
 def register_alarm():
-	credential_line = request.headers.get("Authorization", None)
+	credential_line = request.headers.get("X-Authorization", None)
 	if not credential_line:
 		return jsonify(users_responses[35])
 	try:
@@ -50,7 +50,8 @@ def register_alarm():
 
 @app.route('/API/v1/alarms', methods=['GET'])
 def get_alarms():
-	credential_line = request.headers.get("Authorization", None)
+	credential_line = request.headers.get("X-Authorization", None)
+	
 	if not credential_line:
 		return jsonify(users_responses[35])
 	credential_id = credential_line.split()[1]
@@ -62,13 +63,13 @@ def get_alarms():
 		if module_response == 36:
 			return users_responses[36]
 	else:
-		response = generic_responses[20].copy()                 
+		response = generic_responses[20].copy()
 		response["data"] = module_response
 		return jsonify(response)
 
 @app.route('/API/v1/alarms/<alarm_id>', methods=['GET'])
 def get_alarm_by_id(alarm_id):
-	credential_line = request.headers.get("Authorization", None)
+	credential_line = request.headers.get("X-Authorization", None)
 	if not credential_line:
 		return jsonify(users_responses[35])
 	credential_id = credential_line.split()[1]
@@ -87,7 +88,7 @@ def get_alarm_by_id(alarm_id):
 
 @app.route('/API/v1/alarms/<alarm_id>', methods=['DELETE'])
 def delete_alarm(alarm_id):
-	credential_line = request.headers.get("Authorization", None)
+	credential_line = request.headers.get("X-Authorization", None)
 	if not credential_line:
 		return jsonify(users_responses[35])
 	credential_id = credential_line.split()[1]
